@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.8
   },
-  tooltipTitle: {fontSize: 10},
-  tooltipValue: {fontWeight: 'bold', fontSize: 15},
+  tooltipTitle: {fontSize: 10,color:'#000'},
+  tooltipValue: {fontWeight: 'bold', fontSize: 15,color:'#000'},
   tooltipColor: {
     width: 10,
     height: 5,
