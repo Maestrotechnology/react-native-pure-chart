@@ -88,7 +88,7 @@ export default class ColumnChart extends Component {
 
   handleClick (event, index) {
     this.setState({
-      selectedIndex: index
+      selectedIndex: this.state.selectedIndex=== index ? false : index // for close tooltip if we click same index
     }, () => {
       if (typeof this.props.onPress === 'function') {
         this.props.onPress(index)
