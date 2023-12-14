@@ -455,8 +455,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     justifyContent: 'center'
   },
-  tooltipTitle: {fontSize: 10},
-  tooltipValue: {fontWeight: 'bold', fontSize: 15}
+  tooltipTitle: {fontSize: 10,color:"#000"},
+  tooltipValue: {fontWeight: 'bold', fontSize: 15,color:"#000"}
 })
 
 export default LineChart
