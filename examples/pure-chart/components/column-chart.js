@@ -116,13 +116,15 @@ export default class ColumnChart extends Component {
       let tooltipRenders = []
       for (let i = 0; i < this.state.sortedData.length; i++) {
         let series = this.state.sortedData[i]
+          // if you want customize tooltip value you must pass tooltipValue key in data array
+        let tooltipValue=series.data[selectedIndex]['tooltipValue'] ?? numberWithCommas(series.data[selectedIndex]['y'], false)
         if (series.data[selectedIndex]['x']) {
           tooltipRenders.push(<Text key={'tooltipTitle-' + i} style={styles.tooltipTitle}>{series.data[selectedIndex]['x']}</Text>)
         }
         tooltipRenders.push(
           <View key={'tooltipText-' + i} style={{flexDirection: 'row', paddingLeft: 5, alignItems: 'center'}}>
             <View style={[styles.tooltipColor, {backgroundColor: !series.seriesColor ? this.props.primaryColor : series.seriesColor}]} />
-            <Text style={styles.tooltipValue}>{numberWithCommas(series.data[selectedIndex]['y'], false)}</Text>
+            <Text style={styles.tooltipValue}>{tooltipValue}</Text>
           </View>
         )
       }
