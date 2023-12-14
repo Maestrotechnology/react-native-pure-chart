@@ -38,7 +38,7 @@ export default class ColumnChart extends Component {
   componentDidUpdate(nextProps, nextState){
     if(this.scrollView != null && nextState.max == 0){
       setTimeout(
-        () => this.scrollView.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
+        () => this?.scrollView?.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
       )
     }
   }
@@ -49,7 +49,7 @@ export default class ColumnChart extends Component {
     }).start()
     if(this.scrollView != null){
       setTimeout(
-        () => this.scrollView.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
+        () => this?.scrollView?.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
       )
     }
     
