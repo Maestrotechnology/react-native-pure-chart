@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, StyleSheet, Animated, ScrollView, Easing, Text } from 'react-native'
+import { View, StyleSheet, Animated, ScrollView, Easing, Text, Platform } from 'react-native'
 import ColumnChartItem from './column-chart-item'
 import {initData, drawYAxis, drawYAxisLabels, drawGuideLine, numberWithCommas, drawXAxis, drawXAxisLabels} from '../common'
 
@@ -72,14 +72,15 @@ export default class ColumnChart extends Component {
             defaultBorderColor={this.props.defaultBorderColor}
             isSelected={this.state.selectedIndex === i}
             highlightColor={this.props.highlightColor}
-            onClick={(evt) => this.handleClick(evt, i)} />
+            onClick={(evt) => this.handleClick(evt, i)}
+             />
         )
       }
     }
     return (
       <Animated.View style={[styles.chartView, {
         transform: [{scaleY: fadeAnim}],
-        marginBottom: this.props.minValue && this.state.guideArray && this.state.guideArray.length > 0 ? -1 * this.state.guideArray[0][2] * this.props.minValue : null
+        marginBottom: this.props.minValue && this.state.guideArray && this.state.guideArray.length > 0 ? -1 * this.state.guideArray[0][2] * this.props.minValue : null,
       }]}>
         {renderColumns}
       </Animated.View>
@@ -129,7 +130,7 @@ export default class ColumnChart extends Component {
         )
       }
       return (
-        <View style={[styles.tooltipWrapper, { left: left }]}>
+        <View style={[styles.tooltipWrapper, { left: left, }]}>
           <View style={styles.tooltip}>
             {tooltipRenders}
           </View>
@@ -199,7 +200,8 @@ const styles = StyleSheet.create({
   },
   tooltipWrapper: {
     position: 'absolute',
-    height: '100%',
+    height: Platform.OS === "android"?'100%':undefined,
+    bottom:Platform.OS === "ios"?'40%':undefined,
     alignItems: 'center',
     justifyContent: 'center'
   },
