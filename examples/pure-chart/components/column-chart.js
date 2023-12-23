@@ -106,7 +106,7 @@ export default class ColumnChart extends Component {
 
       let seriesCount = this.state.sortedData.length
       let plusGap = 10 * seriesCount
-      if (this.state.sortedData.length === 1) {
+      if (this.state.sortedData.length === 1 || standardSeries.data.length) {
         plusGap = 0
       }else if (selectedIndex === standardSeries.data.length - 1 || selectedIndex === standardSeries.data.length - 2) {
         plusGap = -80
