@@ -336,7 +336,7 @@ class LineChart extends React.Component {
               onContentSizeChange={() => {
                 if(this.props.lineChartScrollToEnd) this.scrollView.scrollToEnd({ animated: false });
               }}>
-              <View>
+              <View style={{width:this.props.width}}>
 
                 <View ref='chartView' style={styles.chartViewWrapper}>
 
@@ -392,7 +392,8 @@ LineChart.defaultProps = {
   onPointClick: (point) => {
 
   },
-  numberOfYAxisGuideLine: 5
+  numberOfYAxisGuideLine: 5,
+  width:200
 }
 
 const styles = StyleSheet.create({
