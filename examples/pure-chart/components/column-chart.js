@@ -36,7 +36,7 @@ export default class ColumnChart extends Component {
   }
 
   componentDidUpdate(nextProps, nextState){
-    if(this.scrollView != null && nextState.max == 0){
+    if(this.scrollView != null && nextState.max == 0 && this.scrollView.scrollTo!==null){
       setTimeout(
         () => this?.scrollView?.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
       )
@@ -47,7 +47,7 @@ export default class ColumnChart extends Component {
     Animated.timing(this.state.fadeAnim, {
       toValue: 1, easing: Easing.bounce, duration: 1000, useNativeDriver: true
     }).start()
-    if(this.scrollView != null){
+    if(this.scrollView != null && this?.scrollView?.scrollTo!== null){
       setTimeout(
         () => this?.scrollView?.scrollTo(this.props.initialScrollPosition), this.props.initialScrollTimeOut
       )
@@ -108,8 +108,8 @@ export default class ColumnChart extends Component {
       let plusGap = 10 * seriesCount
       if (this.state.sortedData.length === 1) {
         plusGap = 0
-      } else if (selectedIndex === standardSeries.data.length - 1) {
-        plusGap = -50
+      }else if (selectedIndex === standardSeries.data.length - 1 || selectedIndex === standardSeries.data.length - 2) {
+        plusGap = -80
       }
       // 차트 width를 마지막에 늘려야겠음.
 
@@ -155,7 +155,7 @@ export default class ColumnChart extends Component {
         </View>
         <View style={styles.mainContainer}>
           <ScrollView ref={scrollView => this.scrollView = scrollView} horizontal>
-            <View>
+            <View style={{width:this.props.width}}>
               <View ref='chartView' style={styles.chartContainer}>
                 {drawYAxis(this.props.yAxisColor)}
                 {drawGuideLine(this.state.guideArray, this.props.yAxisGridLineColor)}
@@ -241,5 +241,6 @@ ColumnChart.defaultProps = {
   initialScrollTimeOut: 300,
   showYAxisLabel: true,
   showXAxisLabel: true,
-  yAxisSymbol: ''
+  yAxisSymbol: '',
+  width:200
 }
