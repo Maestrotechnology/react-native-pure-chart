@@ -150,6 +150,7 @@ export const refineData = (flattenData, max, height, gap) => {
             x: dataProp[i].x,
             y: dataProp[i].y,
             tooltipValue:dataProp[i].tooltipValue,
+            tooltipTitle:dataProp[i].tooltipTitle,
             isEmpty: isEmpty
           }
         }
