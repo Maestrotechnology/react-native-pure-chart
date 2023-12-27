@@ -289,6 +289,7 @@ class LineChart extends React.Component {
           <View style={StyleSheet.flatten([styles.selectedBox])}>
             {this.state.sortedData.map((series) => {
               let dataObject = series.data[this.state.selectedIndex]
+              let tooltipValue  = dataObject?.tooltipValue ?? numberWithCommas(dataObject.y, false)
               return (
                 <View key={series.seriesName}>
                   {dataObject.x ? (
@@ -302,7 +303,7 @@ class LineChart extends React.Component {
                       borderRadius: 2,
                       backgroundColor: !series.seriesColor ? this.props.primaryColor : series.seriesColor
                     }} />
-                    <Text style={styles.tooltipValue}>{numberWithCommas(dataObject.y, false)}</Text>
+                    <Text style={styles.tooltipValue}>{tooltipValue}</Text>
                   </View>
                 </View>
               )
